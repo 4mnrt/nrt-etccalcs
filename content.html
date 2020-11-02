@@ -6,7 +6,6 @@ LOG of changes and updates:
 
   - Version 1.0 (30 Apr 2019): Cloned the ExpTime calculator V1.4 and modified for different collecting areas for NRT
   - Version 2.0 (17 May 2019): DMA used Marco Lam's graphical google chart work and modified to solve for Limiting Magnitude
-
   - Version 3.0 (03 June 2019): DMA extended with a second plot with the Spectrograph options
 
 Previous versions of the Exposure time calulutaor on which this was built were;
@@ -121,22 +120,21 @@ Previous versions of the Exposure time calulutaor on which this was built were;
            <td id="pulldn">Log x-Axis: </td>
            <td>
                   <input type="radio" name="logModeRadio" id="logModeOff" value="" checked onchange="calcimage();"/>Off</>
-                  <input type="radio" name="logModeRadio" id="logModeOn" value="log" onchange="calcimage();">On</></td>
+                  <input type="radio" name="logModeRadio" id="logModeOn" value="log" onchange="calcimage();">On</>
+          </td>
            <td id="pulldn">Plot Mode: </td>
            <td>
             <select name="plotMode" id="plotMode"  width="180" style="width: 180px" value="seeMode" onchange="calcimage();">
               <option value="snrMode">SNR</option>
               <option value="seeMode" selected="selected">Seeing</option>
-              <option value="skyMode">Sky Brightness</option>
+              <option value="apeMode">Effective Aperture</option>
             </select>
         </tr>
         <tr>
           <td id="pulldn">Instrument: </td>
           <td>
             <select name="instrument" id="instrum"  width="180" style="width: 180px" onchange="calcimage();">
-              <option value="ioo">   IO:O</option>
-              <option value="ioi">   IO:I</option>
-              <option value="rise">  RISE</option>
+              <option value="ioo">   NR:IMAGER</option>
             </select>
           </td>
           <td id="pulldn"> SNR: </td>
@@ -166,25 +164,20 @@ Previous versions of the Exposure time calulutaor on which this was built were;
             <tr>
               <td id="pulldn">Filter: </td>
               <td>
-                <select name="filter" id="filt" width="180" style="width: 180px" onchange="calcimage();">
+                <select name="filter" id="filt" width="180" style="width: 180px" value="fsr" onchange="calcimage();">
                   <option value="fsu" class="ioo">  SDSS-U (AB system)     </option>
                   <option value="fbb" class="ioo">  Bessell-B (Vega) </option>
                   <option value="fbv" class="ioo">  Bessell-V (Vega) </option>
                   <option value="fsg" class="ioo">  SDSS-G (AB system)    </option>
-                  <option value="fsr" class="ioo">  SDSS-R (AB system)    </option>
+                  <option selected value="fsr" class="ioo">  SDSS-R (AB system)    </option>
                   <option value="fsi" class="ioo">  SDSS-I (AB system)    </option>
                   <option value="fsz" class="ioo">  SDSS-Z (AB system)    </option>
-                  <!--<option value="fjj" class="ioi">  J (IO:I)   </option>-->
-
-                  <option value="fhh" class="ioi">  H (Vega)  </option>
-                  <option value="frise" class="rise"> RISE V+R  </option>
-                  <option value="frise720" class="rise"> RISE 720nm (not available) </option>
                 </select>
               </td>
-              <td>Sky Brightness: </td>
+              <td>Effective Aperture (m): </td>
               <td>
-                  <input type="text" name="skyText" class="constraintTextInput" id="skyText" value="0, 2, 4, 6, 8" onchange="calcimage();">
-                <input name="skySlid" id="skySlid" data-slider-id="imSlider" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="0.5" data-slider-value="2" onchange="calcimage();"/>
+                  <input type="text" name="apeText" class="constraintTextInput" id="apeText" value="2, 3.5, 4, 4.2" onchange="calcimage();">
+                <input name="apeSlid" id="apeSlid" data-slider-id="imSlider" type="text" data-slider-min="2" data-slider-max="6" data-slider-step="0.2" data-slider-value="4.0" onchange="calcimage();"/>
               </td>
             </tr>
          </table>
@@ -380,7 +373,7 @@ Previous versions of the Exposure time calulutaor on which this was built were;
           }
       });
 
-      var slider3 = new Slider("#skySlid", {
+      var slider3 = new Slider("#apeSlid", {
         formatter: function(value) {
             return value;
           }

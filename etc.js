@@ -45,8 +45,6 @@ var hideSlider = function(id){
    $(id).hide();
 };
 
-
-
 var showHideTextSlider = function(plotMode){
    //Show all elements
    $('.slider#imSlider').show();
@@ -55,17 +53,17 @@ var showHideTextSlider = function(plotMode){
    if (plotMode == 'snrMode') {
       hideSlider('#snrSlid');
       $('#seeText').hide();
-      $('#skyText').hide();
+      $('#apeText').hide();
   }
    if (plotMode == 'seeMode') {
       $('#snrText').hide();
       hideSlider('#seeSlid');
-      $('#skyText').hide();
+      $('#apeText').hide();
   }
-   if (plotMode == 'skyMode') {
+   if (plotMode == 'apeMode') {
       $('#snrText').hide();
       $('#seeText').hide();
-      hideSlider('#skySlid');
+      hideSlider('#apeSlid');
   }
 
 };
