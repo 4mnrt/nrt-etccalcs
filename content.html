@@ -54,55 +54,18 @@ Previous versions of the Exposure time calulutaor on which this was built were;
 <h2 id="imaging" >Imaging </h2>
 
 <br>
-<p>To use the Exposure Time Calculator (ETC), select an
-   <i>Instrument</i> with a corresponding <i>Binning</i> (usually 2x2)
-   and <i>Filter</i> from the pull-down menus.  The <i>Plot Mode</i>
-   option is used to select whether the plot shows multiple <i>Signal to
-   Noise Ratios</i> (SNR), <i>Seeing Values</i> (FWHM) or <i>Sky Brightnesses</i>.
-   The comma separated list can be modified to the desired values.
+<p>
 </p>
 
-<p><u>IMPORTANT NOTES:</u></p>
+
 
 <ul>
-    <li><b>Mirror Reflectivity: </b> The zero points are derived with clean mirror coatings.
-        Mirror reflectivity will naturally degrade over time. The IO:O ZP (two reflections)
-        is measured to decline at a rate of 0.15mag per year. Other instruments (three reflections) are likely
-        to decline slightly faster than that. The most recent mirror coating was Sept 2019.</li>
-    <li><b>Binning: </b> We <i>strongly recommend</i> using 2x2 binning with both
-        IO:O and RISE. Note that we do not routinely obtain un-binned flats
-        for either of these instruments. Please contact us
-        if you plan on taking un-binned data.</li>
-    <li><b>Minimum Exposure Times: </b> Exposure times as low as 1 second may be
-        quoted by the ETC for
-        <a href="https://telescope.livjm.ac.uk/TelInst/Inst/IOO/">IO:O</a> and
-        <a href="https://telescope.livjm.ac.uk/TelInst/Inst/IOI/">IO:I</a>. However, due to shutter
-        effects a minimum exposure time of at least 20 seconds is strongly
-        recommended for IO:O; shorter exposures are unlikely to produce photometric
-        accuracies of less than 1%.  Please refer to the IO:I webpage for information
-        on exposure times with this instrument. </li>
+
 </ul>
 
 <br><p>
 <p>
-    Dark+10 mag corresponds to civil twilight (sun altitude < -4 degs),
-    Dark+6 mag to nautical twilight (sun altitude between -8 and -12 degs).
-    Roughly speaking, Dark+4 corresponds to observing >30 deg from a full moon;
-    Dark+2 to observing >30 deg from a 65% illuminated moon. We have assumed that
-    the moon has no affect on J and H-band imaging. </p>
 
-<p> For further information on Sky Brightness and its relation to twilight, moon phase
-    and moon distance, see our
-    <a href="https://telescope.livjm.ac.uk/PropInst/Phase2/?sf=SkyBrightness">
-       Sky Brightness
-    </a> web-page.
-    See also the ING web-site on
-    <a href="http://www.ing.iac.es/Astronomy/observing/conditions/skybr/skybr.html">
-        La Palma Night-Sky Brightness
-    </a>.
-</p>
-<p> If you have any problems with or questions about this ETC, please don't hesitate to
-    <a href="https://telescope.livjm.ac.uk/Contact/"> contact us</a>.
 </p>
 
 
@@ -134,7 +97,8 @@ Previous versions of the Exposure time calulutaor on which this was built were;
           <td id="pulldn">Instrument: </td>
           <td>
             <select name="instrument" id="instrum"  width="180" style="width: 180px" onchange="calcimage();">
-              <option value="ioo">   NR:IMAGER</option>
+              <option value="NRI">   NR:IMAGER</option>
+              <option value="NRR">   NR:RAPTOR</option>
             </select>
           </td>
           <td id="pulldn"> SNR: </td>
@@ -165,13 +129,15 @@ Previous versions of the Exposure time calulutaor on which this was built were;
               <td id="pulldn">Filter: </td>
               <td>
                 <select name="filter" id="filt" width="180" style="width: 180px" value="fsr" onchange="calcimage();">
-                  <option value="fsu" class="ioo">  SDSS-U (AB system)     </option>
-                  <option value="fbb" class="ioo">  Bessell-B (Vega) </option>
-                  <option value="fbv" class="ioo">  Bessell-V (Vega) </option>
-                  <option value="fsg" class="ioo">  SDSS-G (AB system)    </option>
-                  <option selected value="fsr" class="ioo">  SDSS-R (AB system)    </option>
-                  <option value="fsi" class="ioo">  SDSS-I (AB system)    </option>
-                  <option value="fsz" class="ioo">  SDSS-Z (AB system)    </option>
+                  <option value="fsu" class="NRI">  SDSS-U (AB system)     </option>
+                  <option value="fbb" class="NRI">  Bessell-B (Vega) </option>
+                  <option value="fbv" class="NRI">  Bessell-V (Vega) </option>
+                  <option value="fsg" class="NRI">  SDSS-G (AB system)    </option>
+                  <option selected value="fsr" class="NRI">  SDSS-R (AB system)    </option>
+                  <option value="fsi" class="NRI">  SDSS-I (AB system)    </option>
+                  <option value="fsz" class="NRI">  SDSS-Z (AB system)    </option>
+                  <option value="fsz" class="NRI">  SDSS-Z (AB system)    </option>
+                  <option value="fhh" class="NRR">  H (Vega) </option>
                 </select>
               </td>
               <td>Effective Aperture (m): </td>
