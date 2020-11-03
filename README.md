@@ -1,5 +1,5 @@
-# ETC Calcs
-Basic Webpage source of the Exposure Time calculator (ETC) for the Liverpool Telescope, adapted for limiting magnitude.
+# NRT Calcs
+Simulated Exposure time calculator for the NRT forked fom 
 
 
 * content.html - Version 2 Calculator using Google Charts
