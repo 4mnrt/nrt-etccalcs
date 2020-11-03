@@ -51,6 +51,7 @@ var showHideTextSlider = function(plotMode){
    $('.constraintTextInput').show();
    //Then Hide the unrequired required inputs
    if (plotMode == 'snrMode') {
+      console.log("HERE")
       hideSlider('#snrSlid');
       $('#seeText').hide();
       $('#apeText').hide();
