@@ -46,6 +46,7 @@ Previous versions of the Exposure time calulutaor on which this was built were;
    }
     </style>
 <h1> New Robotic Telescope Exposure Time Calculator </h1>
+<img src="NRTlogo.png" alt="NRT Logo" style="width:150px;height:150px;">
 
 <!-- ................................................. -->
 <!-- IMAGING ......................................... -->
@@ -419,7 +420,7 @@ Previous versions of the Exposure time calulutaor on which this was built were;
             var skyoff = 0.0;   // skyoff assumes moon has no affect on J-band sky
           } else if (filt == "fhh") {      // IO:I H-band
             var zp = 24.00;     // 23.5 updated after commissioning; corrected for gain (CJD). CMC added 0.5 after 2015 recoating.
-            var skybr = 12.5;   // from ING sky brightness page, in mag per sqr arcsec
+            var skybr = 13.34;   // from https://arxiv.org/pdf/1507.00906.pdf, in mag per sqr arcsec
             var skyoff = 0.0;   // skyoff assumes moon has no affect on H-band sky
 
           } else if (filt == "frise")  {   // rise  V+R
