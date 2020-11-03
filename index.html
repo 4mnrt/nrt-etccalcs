@@ -359,7 +359,7 @@ Previous versions of the Exposure time calulutaor on which this was built were;
             var pixscale = 0.08;
             var darkcurrent = 0;
             var readnoise = 3;
-            var tput = 0.95;
+            var tput = 1.0;
          } else if (instrum == "nrr")  {
             var pixscale = 0.18;
             var darkcurrent = 0;
@@ -491,7 +491,7 @@ Previous versions of the Exposure time calulutaor on which this was built were;
 
 
           var calcLimMag = function(snr, seeing, ape){
-            instZp = zp -2.5*Math.log10((2*2)/(ape*ape))
+            instZp = zp - (2.5*Math.log10((2*2)/(ape*ape))) + (2.5*Math.log10(tput))
             var skymag = skybr - (skyoff * sky)
             var areaofdisk  = (seeing * 2 * seeing * 2);                         // area in arcsec
             var numberofpixels = areaofdisk / (pixscale * pixscale * bin * bin);
