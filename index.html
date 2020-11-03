@@ -356,13 +356,15 @@ Previous versions of the Exposure time calulutaor on which this was built were;
           // FIRST PULL-DOWN ***
           // Look-up tables of variables - INSTRUMENT CHARACTERISTICS
           if (instrum == "nri")         {
-            var pixscale = 0.15;
+            var pixscale = 0.08;
             var darkcurrent = 0;
-            var readnoise = 10;
+            var readnoise = 3;
+            var tput = 0.95;
          } else if (instrum == "nrr")  {
             var pixscale = 0.18;
             var darkcurrent = 0;
             var readnoise = 17;
+            var tput = 1.0
           } else                        { // RISE
             var pixscale = 0.54;
             var darkcurrent = 0;
