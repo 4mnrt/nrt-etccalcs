@@ -80,13 +80,11 @@ Previous versions of the Exposure time calulutaor on which this was built were;
             </select>
         </tr>
         <tr>
-          <td id="pulldn">Instrument: </td>
+          <td id="pulldn">Inv y-Axis: </td>
           <td>
-            <select name="instrument" id="instrum"  width="180" style="width: 180px" onchange="calcimage();">
-              <option value="nri">   NR:IMAGER</option>
-              <option value="nrr">   NR:RAPTOR</option>
-            </select>
-          </td>
+                 <input type="radio" name="invModeRadio" id="invModeOff" value="" checked onchange="calcimage();"/>Off</>
+                 <input type="radio" name="invModeRadio" id="invModeOn" value="inv" onchange="calcimage();">On</>
+         </td>
           <td id="pulldn"> SNR: </td>
           <td>
             <input type="text" name="snrText" class="constraintTextInput" id="snrText" value="10, 25, 50, 100" onchange="calcimage();">
@@ -95,11 +93,11 @@ Previous versions of the Exposure time calulutaor on which this was built were;
 
           </tr>
           <tr>
-            <td id="pulldn">Binning: </td>
+            <td id="pulldn">Instrument: </td>
             <td>
-              <select name="binning" id="binn" width="180" style="width: 180px" onchange="calcimage();">
-                <option value="ioo1" class="nri"> 1x1               </option>
-                <option value="ioi1" class="nrr"> 1x1              </option>
+              <select name="instrument" id="instrum"  width="180" style="width: 180px" onchange="calcimage();">
+                <option value="nri">   NR:IMAGER</option>
+                <option value="nrr">   NR:RAPTOR</option>
               </select>
             </td>
             <td id="pulldn">Seeing (arcsec):</td>
@@ -143,7 +141,7 @@ Previous versions of the Exposure time calulutaor on which this was built were;
              </td>
              <td>Exposure Time Max</td>
              <td>
-               <input id="exptmax" size="4" type="number" value=1200 min=200 step=200 onchange="calcimage();">
+               <input id="exptmax" size="4" type="number" value=600 min=100 step=100 onchange="calcimage();">
              </td>
         </table>
 
@@ -246,11 +244,11 @@ Previous versions of the Exposure time calulutaor on which this was built were;
 <br><hr>
 -->
 
-   <centre>
+   <center>
          <br><br><br>
 
 
-         <p>  <i>(Version 2.0.1 - 21 Jan 2020, Marco Lam and Doug Arnold)</i> </p>
+         <p>  <i>(Version 1.0 - Doug Arnold)</i> </p>
     </center>
     <!-- ......................................................................... -->
     <!-- ... The rest of this file is JavaScript code within the <script> tags ... -->
@@ -315,7 +313,6 @@ Previous versions of the Exposure time calulutaor on which this was built were;
 
           // Look up the input elements in the document for IMAGING
           var instrum = document.getElementById("instrum").value;
-          var binn = document.getElementById("binn").value;
           var filt = document.getElementById("filt").value;
           var seeing = +document.getElementById("seeSlid").value;
           var seeText = document.getElementById("seeText").value;
@@ -337,6 +334,11 @@ Previous versions of the Exposure time calulutaor on which this was built were;
              var logMode = ''
           }
 
+          if (document.getElementById('invModeOn').checked) {
+             var invMode = '-1'
+          } else {
+             var invMode = ''
+          }
 
 
           // FIRST PULL-DOWN ***
@@ -357,13 +359,8 @@ Previous versions of the Exposure time calulutaor on which this was built were;
             var readnoise = 10;
           };
 
-          // SECOND PULL-DOWN ***
-          // Look-up tables of variables -BINNING
-          if (binn == "ioo2" || binn == "rise2") {
-            var bin = 2;
-          } else            {
             var bin = 1;
-          };
+
 
           // THIRD PULL-DOWN ***
           // Look-up tables of variables - ZERO POINTS & SKY (inst and filter specific)
@@ -539,6 +536,7 @@ Previous versions of the Exposure time calulutaor on which this was built were;
             },
             vAxis: {
               title: "Limiting Magnitude",
+              direction: invMode,
               viewWindow: {
                 min: magmin,
                 max: magmax,
