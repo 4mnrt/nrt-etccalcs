@@ -148,10 +148,7 @@ Previous versions of the Exposure time calulutaor on which this was built were;
 
       </center>
          <br><br>
-<!--
          <h2 id="spectroscopy">Spectroscopy </h2>
-
-
          </p>
 
        <center>
@@ -168,17 +165,16 @@ Previous versions of the Exposure time calulutaor on which this was built were;
                <select name="spplotMode" id="spplotMode"  width="180" style="width: 180px" value="spseeMode" onchange="calcspec();">
                  <option value="spsnrMode">SNR</option>
                  <option value="spseeMode" selected="selected">Seeing</option>
-                 <option value="spskyMode">Sky Brightness</option>
+                 <option value="spskyMode">Effective Aperture</option>
                </select>
            </tr>
            <tr>
-               <td id="pulldn">Instrument: </td>
-               <td>
-                 <select name="spectrometer" id="spinstrum"  width="260" style="width: 260px" onchange="calcspec();">
-                    <option value="frodo">   FRODOspec</option>
-                    <option value="sprat">   SPRAT</option>
-                 </select>
-               </td>
+             <td id="pulldn">Inv y-Axis: </td>
+             <td>
+                    <input type="radio" name="spinvModeRadio" id="invModeOff" value="" checked onchange="calcimage();"/>Off</>
+                    <input type="radio" name="spinvModeRadio" id="invModeOn" value="inv" onchange="calcimage();">On</>
+            </td>
+
                <td id="pulldn"> SNR: </td>
               <td>
                 <input type="text" name="spsnrText" class="spconstraintTextInput" id="spsnrText" value="10, 25, 50, 100" onchange="calcspec();">
@@ -187,13 +183,12 @@ Previous versions of the Exposure time calulutaor on which this was built were;
            </tr>
            <tr>
 
-              <td id="pulldn">Slit: </td>
-              <td>
-                 <select name="slitwidth" id="spslit" width="260" style="width: 260px" onchange="calcspec();">
-                    <option value="ifu" class="frodo">  IFU fibre bundle  </option>
-                    <option value="spratslit" class="sprat"> SPRAT 2 arcsec slit </option>
-                 </select>
-              </td>
+             <td id="pulldn">Instrument: </td>
+             <td>
+               <select name="spectrometer" id="spinstrum"  width="260" style="width: 260px" onchange="calcspec();">
+                  <option value="nrsprat">   NR:SPRAT</option>
+               </select>
+             </td>
               <td id="pulldn"> Seeing (arcsec): </td>
               <td>
                 <input type="text" name="spseeText" class="spconstraintTextInput" id="spseeText" value="0.6, 1.2, 1.8, 2.4, 3.0" onchange="calcspec();">
@@ -242,9 +237,9 @@ Previous versions of the Exposure time calulutaor on which this was built were;
 
 
 <br><hr>
--->
 
-   <center>
+
+
          <br><br><br>
 
 
