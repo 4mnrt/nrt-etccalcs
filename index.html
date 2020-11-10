@@ -204,8 +204,8 @@ Previous versions of the Exposure time calulutaor on which this was built were;
              </td>
               <td>Effective Aperture (m): </td>
               <td>
-                <input type="text" name="spapeText" class="spconstraintTextInput" id="spapeText" value="2, 3.5, 4, 4.2" onchange="calcimage();">
-              <input name="spapeSlid" id="spapeSlid" data-slider-id="spSlider" type="text" data-slider-min="2" data-slider-max="6" data-slider-step="0.2" data-slider-value="4.0" onchange="calcimage();"/>
+                <input type="text" name="spapeText" class="spconstraintTextInput" id="spapeText" value="2, 3.5, 4, 4.2" onchange="calcspec();">
+              <input name="spapeSlid" id="spapeSlid" data-slider-id="spSlider" type="text" data-slider-min="2" data-slider-max="6" data-slider-step="0.2" data-slider-value="4.0" onchange="calcspec();"/>
             </tr>
            </tr>
          </table>
@@ -565,7 +565,7 @@ Previous versions of the Exposure time calulutaor on which this was built were;
           var slitwd = 2;            // SPRAT slit ESTIMATE
 
           var sparm = 'spredarm'
-
+          console.log(spape)
 
           if (document.getElementById('splogModeOn').checked) {
              var splogMode = 'log'
@@ -726,13 +726,13 @@ Previous versions of the Exposure time calulutaor on which this was built were;
 
                if (spplotMode == 'spsnrMode'){
                   plotModeValues.forEach(function(spsnr){
-                     calcLimMag(spsnr, spseeing, spsky, spres);
+                     calcLimMag(spsnr, spseeing, spape, spres);
                   });
                }
 
                if (spplotMode == 'spseeMode'){
                   plotModeValues.forEach(function(spseeing){
-                     calcLimMag(spsnr, spseeing, spsky, spres);
+                     calcLimMag(spsnr, spseeing, spape, spres);
                   });
                }
 
