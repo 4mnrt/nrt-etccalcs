@@ -148,10 +148,7 @@ Previous versions of the Exposure time calulutaor on which this was built were;
 
       </center>
          <br><br>
-<!--
          <h2 id="spectroscopy">Spectroscopy </h2>
-
-
          </p>
 
        <center>
@@ -168,17 +165,17 @@ Previous versions of the Exposure time calulutaor on which this was built were;
                <select name="spplotMode" id="spplotMode"  width="180" style="width: 180px" value="spseeMode" onchange="calcspec();">
                  <option value="spsnrMode">SNR</option>
                  <option value="spseeMode" selected="selected">Seeing</option>
-                 <option value="spskyMode">Sky Brightness</option>
+                 <option value="spapeMode">Effective Aperture</option>
+                 <option value="spresMode">Spectral Resolution</option>
                </select>
            </tr>
            <tr>
-               <td id="pulldn">Instrument: </td>
-               <td>
-                 <select name="spectrometer" id="spinstrum"  width="260" style="width: 260px" onchange="calcspec();">
-                    <option value="frodo">   FRODOspec</option>
-                    <option value="sprat">   SPRAT</option>
-                 </select>
-               </td>
+             <td id="pulldn">Inv y-Axis: </td>
+             <td>
+                    <input type="radio" name="spinvModeRadio" id="spinvModeOff" value="" checked onchange="calcimage();"/>Off</>
+                    <input type="radio" name="spinvModeRadio" id="spinvModeOn" value="inv" onchange="calcimage();">On</>
+            </td>
+
                <td id="pulldn"> SNR: </td>
               <td>
                 <input type="text" name="spsnrText" class="spconstraintTextInput" id="spsnrText" value="10, 25, 50, 100" onchange="calcspec();">
@@ -187,13 +184,12 @@ Previous versions of the Exposure time calulutaor on which this was built were;
            </tr>
            <tr>
 
-              <td id="pulldn">Slit: </td>
-              <td>
-                 <select name="slitwidth" id="spslit" width="260" style="width: 260px" onchange="calcspec();">
-                    <option value="ifu" class="frodo">  IFU fibre bundle  </option>
-                    <option value="spratslit" class="sprat"> SPRAT 2 arcsec slit </option>
-                 </select>
-              </td>
+             <td id="pulldn">Instrument: </td>
+             <td>
+               <select name="spectrometer" id="spinstrum"  width="180" style="width: 180px" onchange="calcspec();">
+                  <option value="nrsprat">   NR:SPRAT</option>
+               </select>
+             </td>
               <td id="pulldn"> Seeing (arcsec): </td>
               <td>
                 <input type="text" name="spseeText" class="spconstraintTextInput" id="spseeText" value="0.6, 1.2, 1.8, 2.4, 3.0" onchange="calcspec();">
@@ -201,22 +197,15 @@ Previous versions of the Exposure time calulutaor on which this was built were;
               </td>
            </tr>
            <tr>
-              <td id="pulldn">Spectrometer arm: </td>
+             <td id="pulldn"> Spectral Resolution: </td>
+             <td>
+               <input type="text" name="spresText" class="spconstraintTextInput" id="spresText" value="350, 500, 750, 1000, 2000" onchange="calcspec();">
+               <input name="spseeSlid" id="spresSlid" data-slider-id="spSlider" type="text" data-slider-min="300" data-slider-max="2000" data-slider-step="100" data-slider-value="400" onchange="calcspec();"/>
+             </td>
+              <td>Effective Aperture (m): </td>
               <td>
-                 <select name="specarm" id="sparm" width="260" style="width: 260px"  onchange="calcspec();">
-                    <option value="frredarmv" class="frodo"> FRODOspec Red arm (VPH)  </option>
-                    <option value="frbluarmv" class="frodo"> FRODOspec Blue arm (VPH) </option>
-                    <option value="frredarm" class="frodo">  FRODOspec Red arm (low res)  </option>
-                    <option value="frbluarm" class="frodo">  FRODOspec Blue arm (low res) </option>
-                    <option value="spredarm" class="sprat">  SPRAT Red region  </option>
-                    <option value="spbluarm" class="sprat">  SPRAT Blue region </option>
-                 </select>
-              </td>
-              <td>Sky Brightness: </td>
-              <td>
-                  <input type="text" name="spskyText" class="spconstraintTextInput" id="spskyText" value="0, 2, 4, 6, 8" onchange="calcspec();">
-                <input name="spskySlid" id="spskySlid" data-slider-id="spSlider" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="0.5" data-slider-value="2" onchange="calcspec();"/>
-              </td>
+                <input type="text" name="spapeText" class="spconstraintTextInput" id="spapeText" value="2, 3.5, 4, 4.2" onchange="calcimage();">
+              <input name="spapeSlid" id="spapeSlid" data-slider-id="spSlider" type="text" data-slider-min="2" data-slider-max="6" data-slider-step="0.2" data-slider-value="4.0" onchange="calcimage();"/>
             </tr>
            </tr>
          </table>
@@ -233,7 +222,7 @@ Previous versions of the Exposure time calulutaor on which this was built were;
              </td>
              <td>Exposure Time Max</td>
              <td>
-                <input id="spexptmax" size="4" type="number" value=1200 min=200 step=200 onchange="calcspec();">
+                <input id="spexptmax" size="4" type="number" value=600 min=100 step=100 onchange="calcspec();">
              </td>
 
          </table>
@@ -242,9 +231,9 @@ Previous versions of the Exposure time calulutaor on which this was built were;
 
 
 <br><hr>
--->
 
-   <center>
+
+
          <br><br><br>
 
 
@@ -302,7 +291,13 @@ Previous versions of the Exposure time calulutaor on which this was built were;
           }
       });
 
-      var slider6 = new Slider("#spskySlid", {
+      var slider6 = new Slider("#spresSlid", {
+        formatter: function(value) {
+            return value;
+          }
+      });
+
+      var slider7 = new Slider("#spapeSlid", {
         formatter: function(value) {
             return value;
           }
@@ -553,24 +548,37 @@ Previous versions of the Exposure time calulutaor on which this was built were;
 
           // Look up (Define?) the input elements in the document for IMAGING
           var spinstrum = document.getElementById("spinstrum").value;
-          var spslit = document.getElementById("spslit").value;
-          var sparm = document.getElementById("sparm").value;
           var spseeing = +document.getElementById("spseeSlid").value;
           var spseeText = document.getElementById("spseeText").value;
           var spsnr = +document.getElementById("spsnrSlid").value;
           var spsnrText = document.getElementById("spsnrText").value;
-          var spsky = +document.getElementById("spskySlid").value;
-          var spskyText = document.getElementById("spskyText").value;
+          var spape = +document.getElementById("spapeSlid").value;
+          var spapeText = document.getElementById("spapeText").value;
+          var spres = +document.getElementById("spresSlid").value;
+          var spresText = document.getElementById("spresText").value;
           var spmagmin = document.getElementById("spmagmin").value;
           var spmagmax = document.getElementById("spmagmax").value;
           var spexptmax = document.getElementById("spexptmax").value;
           var spplotMode = document.getElementById("spplotMode").value;
+
+          var spsky = 2;
+          var slitwd = 2;            // SPRAT slit ESTIMATE
+
+          var sparm = 'spredarm'
+
 
           if (document.getElementById('splogModeOn').checked) {
              var splogMode = 'log'
           } else {
              var splogMode = ''
           }
+
+          if (document.getElementById('spinvModeOn').checked) {
+             var spinvMode = '-1'
+          } else {
+             var spinvMode = ''
+          }
+
 
           // FIRST PULL-DOWN ***
           // Look-up tables of variables - INSTRUMENT CHARACTERISTICS
@@ -586,11 +594,8 @@ Previous versions of the Exposure time calulutaor on which this was built were;
 
           // SECOND PULL-DOWN ***
           // Look-up tables of variables - SLIT width (arcsec)
-          if (spslit == "spratslit")   {
-            var slitwd = 2;            // SPRAT slit ESTIMATE
-          } else                       {
-            var slitwd = 10;           // FRODO field-of-view
-          };
+
+
 
           // THIRD PULL-DOWN ***
           // Look-up tables of other variables (all instrument and arm specific)
@@ -630,14 +635,14 @@ Previous versions of the Exposure time calulutaor on which this was built were;
             var spzp = 17.7;           // Estimate giving results similar to SPIE paper = 17.0. In Jan 2016 CMC added 0.7 following 2015 recoating.
             var spskybr = 20.8;        // r band (Originally had 24.6 here. Not sure why. C Benn measures 21.8 in V. 20.8 in R is a reasonable guess.)
             var spskyoff = 1.0;        // r band
-            var spres = 350;           // Estimate from SPIE paper
+          //  var spres = 350;           // Estimate from SPIE paper
             var wvpixscale = 9.0;      // GUESSED!!!
             var refwav = 7000;
           } else                    {  // **** SPRAT blue @ 4500
             var spzp = 17.2;           // Estimate giving results similar to SPIE paper = 16.5. In Jan 2016 CMC added 0.7 following 2015 recoating.
             var spskybr = 22.8;        // Bessell B-band  (Originally had 24.6 here. Not sure why. C Benn measures 21.8 in V. 22.8 in B is a reasonable guess.)
             var spskyoff = 1.5;        // Bessell B-band
-            var spres = 350;           // Estimate from SPIE paper
+          //var spres = 350;           // Estimate from SPIE paper
             var wvpixscale = 3.0;      // GUESSED!!!
             var refwav = 4500;
           };
@@ -657,6 +662,7 @@ Previous versions of the Exposure time calulutaor on which this was built were;
           var spdata = new google.visualization.DataTable();
           spdata.addColumn('number', 'Exposure Time');
           plotModeValues = [];
+
           if (spplotMode == 'spsnrMode'){
             plotModeValues = spsnrText.split(",").map(Number).sort()
             plotModeValues.forEach(function(snr){
@@ -673,14 +679,22 @@ Previous versions of the Exposure time calulutaor on which this was built were;
           );
           }
 
-          if (spplotMode == 'spskyMode'){
-             plotModeValues = spskyText.split(",").map(Number).sort()
-             plotModeValues.forEach(function(sky){
-                spdata.addColumn('number', 'DARK + ' + sky.toFixed(1) + ' mag/arcsec^2')
+          if (spplotMode == 'spapeMode'){
+             plotModeValues = spapeText.split(",").map(Number).sort()
+             plotModeValues.forEach(function(ape){
+                spdata.addColumn('number', 'Aperture ' + ape.toFixed(1) + ' m')
           });
-       }
+          }
 
-          var calcLimMag = function(spsnr, spseeing, spsky){
+          if (spplotMode == 'spresMode'){
+             plotModeValues = spresText.split(",").map(Number).sort()
+             plotModeValues.forEach(function(res){
+                spdata.addColumn('number', 'Spectral Res ' + res)
+          });
+          }
+
+          var calcLimMag = function(spsnr, spseeing, spape, spres){
+            spinstZp = spzp - (2.5*Math.log10((2*2)/(spape*spape)))
             var spskymag = spskybr - (spskyoff * spsky);  //
             var spatialarcs = (slitwd * spseeing * 2) ;                              // area on sky, in arcsec
             var spatialarea = (slitwd * spseeing * 2) / (sppixscale * sppixscale) ;  // area on sky, in pixels
@@ -688,7 +702,7 @@ Previous versions of the Exposure time calulutaor on which this was built were;
             var spnumberofpixels = spatialarea * specpixsc ;  // number of pixels per spat/spect resln element
 
             //NOTE: spzp is ZP (in mags) that gives 1 photon/sec/Angstrom
-            var spskyphotons  = (Math.pow(10.0,((spzp - spskymag)/2.5)) * (refwav/spres) * spatialarcs);
+            var spskyphotons  = (Math.pow(10.0,((spinstZp - spskymag)/2.5)) * (refwav/spres) * spatialarcs);
                           // spstarphotons and spskyphotons should be in units of photons per spatial/spectral
                           // resolution element (really electrons/res elem):
                           //  - multiplying by  (refwav/spres) convert from "per Angstrom" to "per res element"
@@ -700,7 +714,7 @@ Previous versions of the Exposure time calulutaor on which this was built were;
             var spstarphotonsb = (-spb - Math.sqrt(spb*spb - 4*spa*spc))/(2*spa);     // solve quadratic equation (-ve)
             var spstarphotons = Math.max(spstarphotonsa, spstarphotonsb);
         // Calulate the inst zeropoint offset (this should be out of the loop for improved performance!)
-            var splimMag = -2.5 * Math.log10(spstarphotons / (refwav/spres)) + spzp;        // Calculate the limiting magnitude
+            var splimMag = -2.5 * Math.log10(spstarphotons / (refwav/spres)) + spinstZp;        // Calculate the limiting magnitude
             spdataLine.push(splimMag);                                    // Add to list
           }
 
@@ -712,19 +726,25 @@ Previous versions of the Exposure time calulutaor on which this was built were;
 
                if (spplotMode == 'spsnrMode'){
                   plotModeValues.forEach(function(spsnr){
-                     calcLimMag(spsnr, spseeing, spsky);
+                     calcLimMag(spsnr, spseeing, spsky, spres);
                   });
                }
 
                if (spplotMode == 'spseeMode'){
                   plotModeValues.forEach(function(spseeing){
-                     calcLimMag(spsnr, spseeing, spsky);
+                     calcLimMag(spsnr, spseeing, spsky, spres);
                   });
                }
 
-               if (spplotMode == 'spskyMode'){
-                  plotModeValues.forEach(function(spsky){
-                     calcLimMag(spsnr, spseeing, spsky);
+               if (spplotMode == 'spapeMode'){
+                  plotModeValues.forEach(function(spape){
+                     calcLimMag(spsnr, spseeing, spape, spres);
+                  });
+               }
+
+               if (spplotMode == 'spresMode'){
+                  plotModeValues.forEach(function(spres){
+                     calcLimMag(spsnr, spseeing, spape, spres);
                   });
                }
 
@@ -745,6 +765,7 @@ Previous versions of the Exposure time calulutaor on which this was built were;
               },
               vAxis: {
                 title: "Limiting Magnitude",
+                direction: spinvMode,
                 viewWindow: {
                   min: spmagmin,
                   max: spmagmax,
