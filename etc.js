@@ -74,18 +74,29 @@ var showHideSpTextSlider = function(plotMode){
    if (plotMode == 'spsnrMode') {
       hideSlider('#spsnrSlid');
       $('#spseeText').hide();
-      $('#spskyText').hide();
+      $('#spapeText').hide();
+      $('#spresText').hide();
 
   }
    if (plotMode == 'spseeMode') {
       $('#spsnrText').hide();
       hideSlider('#spseeSlid');
-      $('#spskyText').hide();
+      $('#spapeText').hide();
+      $('#spresText').hide();
   }
-   if (plotMode == 'spskyMode') {
+   if (plotMode == 'spapeMode') {
       $('#spsnrText').hide();
       $('#spseeText').hide();
-      hideSlider('#spskySlid');
+      hideSlider('#spapeSlid');
+      $('#spresText').hide();
   }
+
+  if (plotMode == 'spresMode') {
+     $('#spsnrText').hide();
+     $('#spseeText').hide();
+     $('#spapeText').hide();
+     hideSlider('#spresSlid');
+ }
+
 
 };
